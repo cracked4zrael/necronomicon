@@ -1,17 +1,12 @@
-#include <iostream>
-#include "add.h" 
 // +--------------------------------------------+
 // |              INCLUDING HEADERS             |
 // +--------------------------------------------+
-//
 // #include "add.h" → Includes your own header file.
 // Never include `.cpp` files — it can cause multiple definition errors
 // and undefined behavior during linking.
-//
 
-// +--------------------------------------------+
-// |                 MAIN FUNCTION              |
-// +--------------------------------------------+
+#include <iostream>
+#include "add.h" 
 
 int main() {
     std::cout << "Hello world";

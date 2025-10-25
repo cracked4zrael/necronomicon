@@ -1,8 +1,8 @@
-#include <iostream>
 // +--------------------------------------------+
 // |              HEADER FILE BASICS            |
 // +--------------------------------------------+
-//
+
+#include <iostream>
 // #include <...> → compiler searches system include directories
 // #include "..." → compiler searches current directory first, 
 //                  then system directories (use this for your own headers)
@@ -25,15 +25,11 @@
 // Solution → use a header file (see Part 2 directory).
 int add(int x, int y);
 
-// +--------------------------------------------+
-// |                 MAIN FUNCTION              |
-// +--------------------------------------------+
-
 int main() {
+  // We didn’t declare std::cout ourselves — it’s declared inside <iostream>.
+  // When we include <iostream>, the compiler effectively "copy-pastes"
+  // all of its declarations into our program.
     std::cout << "Hello world"; 
-    // We didn’t declare std::cout ourselves — it’s declared inside <iostream>.
-    // When we include <iostream>, the compiler effectively "copy-pastes"
-    // all of its declarations into our program.
 
     std::cout << "The sum of 3 and 4 is: " << add(3, 4) << '\n';
 

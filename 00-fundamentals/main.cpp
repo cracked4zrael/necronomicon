@@ -5,8 +5,13 @@
 #include <iostream>   // Provides standard input/output (std::cout, std::cin)
 #include <string>     // Provides std::string
 
+// Just like in C, your program's entry point is a function called main() with an integer return type 
+// The integer return type serves as the program's exit status
 
-int main() {
+int main(int argc, char** argv) {
+// Command line argument are passed in argc (number of args), and argv(array of C-style strings)
+
+
 
 // +--------------------------------------------+
 // |                  OUTPUT                    |

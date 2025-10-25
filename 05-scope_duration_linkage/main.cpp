@@ -1,8 +1,8 @@
-#include <iostream>
-
 // +--------------------------------------------+
 // |     CHAPTER 6: SCOPE, DURATION, LINKAGE    |
 // +--------------------------------------------+
+
+#include <iostream>
 
 // +--------------------------------------------+
 // |              GLOBAL VARIABLES              |
@@ -66,12 +66,10 @@ namespace Gyat {
   constexpr int g_z { }; // Compile-time constant global variable
 }
 
-// +--------------------------------------------+
-// |           FUNCTION EXAMPLE                 |
-// +--------------------------------------------+
 
 constexpr bool g_firstCall { true };
 
+// -- Function demonstrating parameter-based state control --
 int getInteger(bool bFirstCall) {
   int i { };
 
@@ -83,6 +81,10 @@ int getInteger(bool bFirstCall) {
   std::cin >> i;
   return i;
 }
+
+// -- Passing state as parameters --
+  int a { getInteger(g_firstCall) };
+  int b { getInteger(!g_firstCall) };
 
 // +--------------------------------------------+
 // |                 NAMESPACES                 |
@@ -99,12 +101,11 @@ namespace Goo {
   int doSomething(int x, int y) { return x - y; }
 }
 
-int main() {
   std::cout << Foo::doSomething(4, 3) << '\n';
   std::cout << Goo::doSomething(4, 3) << '\n';
   ::print(); // Refers to the global namespace
 
-  // -- Forward Declarations inside namespaces --
+// -- Forward Declarations inside namespaces --
   /*
     [add.h]
       namespace BasicMath {
@@ -117,56 +118,54 @@ int main() {
       }
   */
 
-  // -- Multiple namespace blocks --
-  // You can define a namespace in several places; all declarations are combined.
-  // [circle.h]
-  //   namespace BasicMath { constexpr double pi = 3.14; }
-  //
-  // [growth.h]
-  //   namespace BasicMath { constexpr double e = 2.7; }
+// -- Multiple namespace blocks --
+// You can define a namespace in several places; all declarations are combined.
+// [circle.h]
+//   namespace BasicMath { constexpr double pi = 3.14; }
+//
+// [growth.h]
+//   namespace BasicMath { constexpr double e = 2.7; }
 
-  // -- Nested Namespaces --
-  // Namespaces can live inside other namespaces
+// -- Nested Namespaces --
+// Namespaces can live inside other namespaces
   namespace Foo::Goo {
     int subtract(int x, int y) { return x - y; }
   }
 
   std::cout << Foo::Goo::subtract(1, 2) << '\n';
 
-  // Namespace aliases
+// Namespace aliases
   namespace Yeah = Foo::Goo;
   std::cout << Yeah::subtract(1, 2) << '\n';
 
-  // +--------------------------------------------+
-  // |            LOCAL VARIABLES                 |
-  // +--------------------------------------------+
+// +--------------------------------------------+
+// |            LOCAL VARIABLES                 |
+// +--------------------------------------------+
 
-  // Local variables are created inside functions.
-  // They are destroyed once the function or block ends.
-  // They also have no linkage.
+// Local variables are created inside functions.
+// They are destroyed once the function or block ends.
+// They also have no linkage.
 
   {
     int yeah { 5 };
   } // Destroyed after this block
 
-  // +--------------------------------------------+
-  // |         STATIC LOCAL VARIABLES             |
-  // +--------------------------------------------+
+// +--------------------------------------------+
+// |         STATIC LOCAL VARIABLES             |
+// +--------------------------------------------+
 
-  // If you want a variable inside a function to keep its value even after the function ends,
-  // use static local variables (their lifetime lasts until the program ends).
+// If you want a variable inside a function to keep its value even after the function ends,
+// use static local variables (their lifetime lasts until the program ends).
 
   static int s_value { 1 }; // Created once and persists between function calls
-  // Best practice: always initialize static locals explicitly.
+// Best practice: always initialize static locals explicitly.
 
-  // -- Static Local Constants --
-  // Useful when creating a value is expensive (e.g., loading from a file or database)
-  // and you only want to do it once.
+// -- Static Local Constants --
+// Useful when creating a value is expensive (e.g., loading from a file or database)
+// and you only want to do it once.
   const static int importantKey { 32 }; // Created once and reused in all future calls
 
-  // -- Passing state as parameters --
-  int a { getInteger(g_firstCall) };
-  int b { getInteger(!g_firstCall) };
+// Refer to the getInteger() function for paramter-based state control using static variable
 
   /* Best Practices:
    * Prefer const static locals when possible.
@@ -184,7 +183,7 @@ int main() {
     int y { 10 };
     std::cout << "y: " << y << '\n'; // Accessible here
   }
-  // std::cout << y; // ERROR: y is out of scope here
+// std::cout << y; // ERROR: y is out of scope here
 
 // -- Global Scope --
   int globalVar { 100 }; // Global variable accessible anywhere in the file
@@ -216,7 +215,7 @@ int main() {
     int localVar { 42 };
     std::cout << "Local Var: " << localVar << '\n';
   }
-  // std::cout << localVar; // ERROR: out of scope
+// std::cout << localVar; // ERROR: out of scope
 
 // -- Internal Linkage --
   static int internalVar { 50 }; // Visible only in this file
@@ -270,5 +269,3 @@ V1::doSomething(); // V1
 V2::doSomething(); // V2
 doSomething();     // V1 (default version)
 
-  return 0; // Program executed successfully
-} // All local variables in main are destroyed here

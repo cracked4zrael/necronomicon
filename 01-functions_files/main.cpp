@@ -71,14 +71,20 @@ int  add(int a, int b);
 // +--------------------------------------------+
 
 // -- Basic function --
-void doPrint() {  // Use vooid if you dont want to return anything
+void doPrint() {  // Use void if you dont want to return anything
     std::cout << "Hello world!\n";
 }
+
+// Function call
+doPrint();  
 
 // -- Calling another function --
 void Yeah() { 
     doPrint(); // Calls doPrint()
 }
+
+// Calls another function that calls doPrint()
+Yeah();    
 
 // -- Function that returns a value --
 int getValueFromUser() {
@@ -90,36 +96,24 @@ int getValueFromUser() {
     return input; // Return user input
 }
 
+int num{ getValueFromUser() };                          // Store return value
+std::cout << num << " doubled is: " << num * 2 << '\n'; // Using return values via functions
+                               
 // -- Function parameters and arguments --
 void printDouble(int value) {
     std::cout << value << " doubled is: " << value * 2 << '\n';
 }
 
-// -- Simple add function --
+// Passing argument to function 
+printDouble(5);                  // Pass literal
+printDouble(getValueFromUser()); // Pass return value
+
+// -- Function that receives multiple parameters (Simple add function) --
 int add(int a, int b) {
     return a + b;
 }
 
-// +--------------------------------------------+
-// |                MAIN FUNCTION               |
-// +--------------------------------------------+
+// Passing multiple arguments to a function
+std::cout << add(5, 3) << '\n';
 
-int main() {
-    doPrint(); // Call a function
-    Yeah();    // Calls another function that calls doPrint()
-
-// -- Using return values --
-    int num{ getValueFromUser() }; // Store return value
-    std::cout << num << " doubled is: " << num * 2 << '\n';
-
-// -- Passing arguments --
-    printDouble(5);               // Pass literal
-    printDouble(getValueFromUser()); // Pass return value
-
-// -- Multiple parameters --
-    std::cout << add(5, 3) << '\n';
-
-    return EXIT_SUCCESS; // Indicates successful program execution
-
-    // Refer to /headers for header guards and related topics.
-}
+// Refer to /headers for header guards

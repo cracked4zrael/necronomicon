@@ -94,37 +94,33 @@ int conditionalFunction2() {
   return 0;
 }
 
-// +--------------------------------------------+
-// |                  MAIN                      |
-// +--------------------------------------------+
 
-int main() {
-  // -- Measuring Sizes --
+// -- Measuring Sizes --
   int x{};
   std::cout << "bool: " << sizeof(bool) << " bytes\n";
   std::cout << "x is: " << sizeof(x) << " bytes\n";
 
-  // -- Signed and Unsigned Integers --
+// -- Signed and Unsigned Integers --
   int a{ -3 };
   int b{ 3 };
 
-  // Unsigned: non-negative only. 
-  // Prefer signed unless doing bit-level or low-level operations.
+// Unsigned: non-negative only. 
+// Prefer signed unless doing bit-level or low-level operations.
   unsigned short us{};
   unsigned int ui{};
   unsigned long ul{};
   unsigned long long ull{};
 
-  // -- Fixed-width Integers (from <cstdint>) --
+// -- Fixed-width Integers (from <cstdint>) --
   std::int32_t fixed{ 32767 };    // always 32 bits
   std::int_fast16_t fast{ 3 };    // fastest at least 16-bit type
   std::int_least16_t least{ 4 };  // smallest type with at least 16 bits
 
-  // -- Size Type (from <cstddef>) --
+// -- Size Type (from <cstddef>) --
   std::size_t sizeOfX{ sizeof(x) };
   std::cout << "Size of x: " << sizeOfX << " bytes\n";
 
-  // -- Booleans --
+// -- Booleans --
   bool b1{ true };
   bool b2{ false };
   b1 = false;
@@ -142,7 +138,7 @@ int main() {
 
   booleanFunction();
 
-  // -- Conditional Example --
+// -- Conditional Example --
   if (0 == 0)
     std::cout << "0 is indeed equal to 0\n";
   else if (0 > 0)
@@ -150,5 +146,3 @@ int main() {
   else
     std::cout << "undefined\n";
 
-  return 0;
-}

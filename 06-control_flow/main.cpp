@@ -5,28 +5,28 @@
 #include <iostream>
 
 int main() {
-  // When you run a program, the CPU (the brain of your computer that executes instructions)
-  // starts at the top of main().
-  // However, straight execution isn’t enough. What if the user enters a number but types
-  // something invalid? This is where control flow statements come in.
-  // They make decisions, repeat actions, jump to different parts of code, and handle unexpected situations.
+// When you run a program, the CPU (the brain of your computer that executes instructions)
+// starts at the top of main().
+// However, straight execution isn’t enough. What if the user enters a number but types
+// something invalid? This is where control flow statements come in.
+// They make decisions, repeat actions, jump to different parts of code, and handle unexpected situations.
 
   int x { 0 };
 
-  // +--------------------------------------------+
-  // |       CONDITIONAL STATEMENTS               |
-  // +--------------------------------------------+
+// +--------------------------------------------+
+// |       CONDITIONAL STATEMENTS               |
+// +--------------------------------------------+
 
-  // Note: Always use blocks { } to prevent indentation issues.
+// Note: Always use blocks { } to prevent indentation issues.
   if (x > 10) { // condition
     std::cout << x << " is greater than 10\n"; // true statement
   } else {
     std::cout << x << " isn't greater than 10\n"; // false statement
   }
 
-  // -- if else vs if if --
-  // Use if-else if you only want one condition to trigger.
-  // Use multiple if statements if all conditions should run.
+// -- if else vs if if --
+// Use if-else if you only want one condition to trigger.
+// Use multiple if statements if all conditions should run.
 
   if (x < 10) {
     std::cout << "its low";
@@ -36,7 +36,7 @@ int main() {
     std::cout << "hi";
   }
 
-  // You can also flatten if statements.
+// You can also flatten if statements.
   if (x < 0) {
     std::cout << x << " is negative\n";
   } else if (x <= 20) {
@@ -45,7 +45,7 @@ int main() {
     std::cout << x << " is negative\n";
   }
 
-  // Or even shorter using logical operators.
+// Or even shorter using logical operators.
   if (x > 0 && y > 0)
     std::cout << "both numbers are positive\n";
   else if (x > 0 || y > 0)
@@ -53,14 +53,14 @@ int main() {
   else
     std::cout << "neither number is positive\n";
 
-  // +--------------------------------------------+
-  // |        CONSTEXPR IF STATEMENTS             |
-  // +--------------------------------------------+
+// +--------------------------------------------+
+// |        CONSTEXPR IF STATEMENTS             |
+// +--------------------------------------------+
 
-  // Sometimes conditions can be determined before the program even starts (compile time).
-  // Here, gravity is already a constexpr and known at compile time.
-  // Since gravity is always 9.8, the if condition will always be true, and the else branch
-  // will never run, yet the compiler still includes it — wasting time and space.
+// Sometimes conditions can be determined before the program even starts (compile time).
+// Here, gravity is already a constexpr and known at compile time.
+// Since gravity is always 9.8, the if condition will always be true, and the else branch
+// will never run, yet the compiler still includes it — wasting time and space.
 
   constexpr double gravity { 9.8 };
 
@@ -70,10 +70,10 @@ int main() {
     std::cout << "ur cooked\n";
   }
 
-  // -- constexpr if --
-  // By adding constexpr after if, you tell the compiler to evaluate the condition at compile time.
-  // If true, the code inside if is compiled and the else block is removed.
-  // If false, the opposite happens.
+// -- constexpr if --
+// By adding constexpr after if, you tell the compiler to evaluate the condition at compile time.
+// If true, the code inside if is compiled and the else block is removed.
+// If false, the opposite happens.
   if constexpr (gravity == 9.8) {
     std::cout << "gravity is normal\n";
   } else {
@@ -87,18 +87,18 @@ int main() {
    * return 0;
    */
 
-  // This is useful for optimization, skipping unnecessary code.
+// This is useful for optimization, skipping unnecessary code.
 
-  // +--------------------------------------------+
-  // |            SWITCH STATEMENTS               |
-  // +--------------------------------------------+
+// +--------------------------------------------+
+// |            SWITCH STATEMENTS               |
+// +--------------------------------------------+
 
-  // When you need to compare one value against several possible options,
-  // a long chain of if-else statements looks messy.
-  // If the value matches one of the case labels, it jumps there.
-  // If no match is found and there’s no default label, the entire block is skipped.
-  // Note: The condition must be an integer or enum — no floats, strings, or complex types.
-  // Always use break (to exit the switch) or return (to exit the function).
+// When you need to compare one value against several possible options,
+// a long chain of if-else statements looks messy.
+// If the value matches one of the case labels, it jumps there.
+// If no match is found and there’s no default label, the entire block is skipped.
+// Note: The condition must be an integer or enum — no floats, strings, or complex types.
+// Always use break (to exit the switch) or return (to exit the function).
 
   int value { 3 };
 
@@ -109,11 +109,11 @@ int main() {
     default: std::cout << "unknown"; return;
   }
 
-  // Use switch for checking one expression (integer/enum).
-  // Use if-else for checking ranges, multiple variables, or non-integral types.
+// Use switch for checking one expression (integer/enum).
+// Use if-else for checking ranges, multiple variables, or non-integral types.
 
-  // -- switch fallthrough and scoping --
-  // [[fallthrough]] attribute: intentionally lets execution continue to the next case.
+// -- switch fallthrough and scoping --
+// [[fallthrough]] attribute: intentionally lets execution continue to the next case.
 
   switch (2) {
     case 1:
@@ -129,8 +129,8 @@ int main() {
       break;
   }
 
-  // -- stacking case labels --
-  // You can create multiple case labels that share the same code block.
+// -- stacking case labels --
+// You can create multiple case labels that share the same code block.
 
   switch (c) {
     case 'a': case 'e': case 'i': case 'o': case 'u':
@@ -139,14 +139,14 @@ int main() {
       return false;
   }
 
-  // -- variable declaration inside switch -- 
-  // Switch statements do not create their own scope — all cases share one.
-  // Variables declared in one case can be "seen" in another, even if skipped.
-  // Initialization (using =) can’t be skipped safely, so C++ forbids it in certain places.
+// -- variable declaration inside switch -- 
+// Switch statements do not create their own scope — all cases share one.
+// Variables declared in one case can be "seen" in another, even if skipped.
+// Initialization (using =) can’t be skipped safely, so C++ forbids it in certain places.
 
   switch (1) {
     int a;        // ok: declaration before any case
-    // int b{5};  // error: initialization before case labels is illegal
+// int b{5};  // error: initialization before case labels is illegal
 
     case 1:
       int y;      // ok but messy: same scope for all cases
@@ -154,7 +154,7 @@ int main() {
       break;
 
     case 2:
-      // int z{4}; // error: can’t initialize if later cases exist (unsafe)
+// int z{4}; // error: can’t initialize if later cases exist (unsafe)
       y = 5;      // ok: y still visible here
       break;
 
@@ -162,10 +162,10 @@ int main() {
       break;
   }
 
-  // Why this happens:
-  // The compiler allows jumps between case labels (like gotos).
-  // If it jumps over an initialization, that variable never gets constructed → unsafe.
-  // Fix: wrap each case in braces to create its own scope.
+// Why this happens:
+// The compiler allows jumps between case labels (like gotos).
+// If it jumps over an initialization, that variable never gets constructed → unsafe.
+// Fix: wrap each case in braces to create its own scope.
 
   switch (1) {
     case 1: {
@@ -185,16 +185,16 @@ int main() {
       break;
   }
 
-  // - Switch has one big scope → risky to initialize vars directly.
-  // - Use { } blocks inside cases when defining new vars.
-  // - Safe, clean, and compiler-approved.
+// - Switch has one big scope → risky to initialize vars directly.
+// - Use { } blocks inside cases when defining new vars.
+// - Safe, clean, and compiler-approved.
 
-  // +--------------------------------------------+
-  // |              GOTO STATEMENTS               |
-  // +--------------------------------------------+
+// +--------------------------------------------+
+// |              GOTO STATEMENTS               |
+// +--------------------------------------------+
 
-  // Tip: Just don’t use this.
-  // Sometimes you want to skip ahead or loop back, so you can use goto — but it’s discouraged.
+// Tip: Just don’t use this.
+// Sometimes you want to skip ahead or loop back, so you can use goto — but it’s discouraged.
 
   double num { };
 
@@ -209,12 +209,12 @@ tryagain: // label
 
   std::cout << "banana";
 
-  // If the user enters a negative number, the program jumps back to the label and asks again.
-  // Goto skips or repeats a section depending on where you tell it to jump.
-  // Generally, use functions instead.
+// If the user enters a negative number, the program jumps back to the label and asks again.
+// Goto skips or repeats a section depending on where you tell it to jump.
+// Generally, use functions instead.
 
-  // When goto can be useful:
-  // Exiting nested loops early without ending the entire function.
+// When goto can be useful:
+// Exiting nested loops early without ending the entire function.
 
   for (int i = 1; i < 5; ++i) {
     for (int j = 1; j < 5; ++j) {
@@ -230,9 +230,9 @@ tryagain: // label
 end:
   std::cout << "and we're done.\n";
 
-  // +--------------------------------------------+
-  // |              LOOPS (MAJOR)                 |
-  // +--------------------------------------------+
+// +--------------------------------------------+
+// |              LOOPS (MAJOR)                 |
+// +--------------------------------------------+
 
   int count { 1 };
 
@@ -243,12 +243,12 @@ end:
 
   std::cout << "done!\n";
 
-  // Infinite loop
+// Infinite loop
   while (1) {
     std::cout << "hello\n";
   }
 
-  // Nested loops: useful for grids and tables
+// Nested loops: useful for grids and tables
   int outer { 1 };
   while (outer <= 5) {
     int inner { 1 };
@@ -260,9 +260,9 @@ end:
     ++outer;
   }
 
-  // +--------------------------------------------+
-  // |           DO-WHILE STATEMENTS              |
-  // +--------------------------------------------+
+// +--------------------------------------------+
+// |           DO-WHILE STATEMENTS              |
+// +--------------------------------------------+
 
   int selection { };
 
@@ -275,7 +275,7 @@ end:
 
   std::cout << "you selected option #" << selection << '\n';
 
-  // Do-while always runs at least once before checking the condition.
+// Do-while always runs at least once before checking the condition.
   do {
     std::cout << "please make a selection: \n";
     std::cout << "1) gyat";
@@ -285,11 +285,11 @@ end:
 
   std::cout << "you selected option #" << selection << '\n';
 
-  // Favor while loops unless you specifically need to run at least once.
+// Favor while loops unless you specifically need to run at least once.
 
-  // +--------------------------------------------+
-  // |             FOR STATEMENTS                 |
-  // +--------------------------------------------+
+// +--------------------------------------------+
+// |             FOR STATEMENTS                 |
+// +--------------------------------------------+
 
   /*
    * for (init-statement; condition; end-expression)
@@ -305,30 +305,30 @@ end:
 
   std::cout << '\n';
 
-  // Count down:
+// Count down:
   for (int i { 9 }; i >= 0; --i) {
     std::cout << i << '\n';
   }
 
-  // Omitting parts of a for loop:
+// Omitting parts of a for loop:
   int i { 0 };
   for ( ; i < 10; ) {
     std::cout << i << '\n';
     ++i;
   }
 
-  // Using multiple variables:
+// Using multiple variables:
   for (int x { 0 }, y { 9 }; x < 10; ++x, --y) {
     std::cout << x << ' ' << y << '\n';
   }
 
-  // +--------------------------------------------+
-  // |          BREAK & CONTINUE                  |
-  // +--------------------------------------------+
+// +--------------------------------------------+
+// |          BREAK & CONTINUE                  |
+// +--------------------------------------------+
 
-  // -- break and return statements --
-  // break: exits the current loop/switch
-  // return: exits the entire function
+// -- break and return statements --
+// break: exits the current loop/switch
+// return: exits the entire function
 
   while (true) {
     char ch { };
@@ -341,8 +341,8 @@ end:
     std::cout << "we broke out of the loop\n";
   }
 
-  // -- continue statement --
-  // Skips the rest of the loop body and moves to the next iteration.
+// -- continue statement --
+// Skips the rest of the loop body and moves to the next iteration.
 
   for (int count { 0 }; count < 10; ++count) {
     if ((count % 4) == 0) {
@@ -351,7 +351,7 @@ end:
     std::cout << count << '\n';
   }
 
-  // Be careful: using continue in while/do-while can cause infinite loops.
+// Be careful: using continue in while/do-while can cause infinite loops.
 
   int counter { 0 };
   while (counter < 10) {
@@ -362,31 +362,32 @@ end:
     ++counter;
   }
 
-  // +--------------------------------------------+
-  // |                HALTS                       |
-  // +--------------------------------------------+
+// +--------------------------------------------+
+// |                HALTS                       |
+// +--------------------------------------------+
 
-  // Sometimes, a program needs to stop running.
-  // std::exit() ends your program immediately and returns a status code.
-  // 0 means success.
+// Sometimes, a program needs to stop running.
+// std::exit() ends your program immediately and returns a status code.
+// 0 means success.
 
   std::cout << 1 << '\n';
   clean();
   std::exit(0);
   std::cout << 2 << '\n'; // never runs
 
-  // std::atexit() - registers functions to run automatically when std::exit() is called.
+// std::atexit() - registers functions to run automatically when std::exit() is called.
   std::atexit(cleanup);
   std::cout << 1 << '\n';
   std::exit(0); // cleanup runs first
 
-  // std::quick_exit() / std::at_quick_exit() - faster but skip some cleanup steps.
-  // std::abort() - ends program abnormally (no cleanup).
-  // std::terminate() - called when unhandled exceptions occur; usually calls std::abort().
+// std::quick_exit() / std::at_quick_exit() - faster but skip some cleanup steps.
+// std::abort() - ends program abnormally (no cleanup).
+// std::terminate() - called when unhandled exceptions occur; usually calls std::abort().
 
-  // When to use halt?
-  // Almost never — skips normal cleanup.
-  // Prefer returning normally or using exceptions.
-  // Good programs handle unexpected shutdowns safely (e.g., autosaving progress).
-}
+// When to use halt?
+// Almost never — skips normal cleanup.
+// Prefer returning normally or using exceptions.
+// Good programs handle unexpected shutdowns safely (e.g., autosaving progress).
+
+} // Okay, I assume you have a common sense that's why I didn't relaly wrapped them in a main function since this is more of a learning reference than following an actual C++ program, so remember that all local variables get destroyed at the end of { okay?
 
